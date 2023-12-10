@@ -5,8 +5,12 @@ import { ApiGatewayStack } from "./stacks/ApiGatewayStack";
 
 
 const app = new App();
-new DataStack(app, 'DataStack');
-const lambdaStack = new LambdaStack(app, 'LambdaStack');
+const dataStack = new DataStack(app, 'DataStack');
+
+const lambdaStack = new LambdaStack(app, 'LambdaStack', {
+    dynamoTable: dataStack.dynamoTable 
+});
+
 new ApiGatewayStack(app, 'ApiGatewayStack', {
-    helloLambdaIntegration: lambdaStack.helloLambdaIntegration
-    });
+    helloLambdaIntegration: lambdaStack.helloLambdaIntegration,
+});

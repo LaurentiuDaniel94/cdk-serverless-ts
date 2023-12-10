@@ -1,13 +1,11 @@
 import {Stack, StackProps} from 'aws-cdk-lib';
 import { LambdaIntegration, RestApi } from 'aws-cdk-lib/aws-apigateway';
 import {Construct} from 'constructs'
-
 interface ApiGatewayStackProps extends StackProps {
     helloLambdaIntegration: LambdaIntegration
 }
 
 export class ApiGatewayStack extends Stack {
-
 
     constructor(scope: Construct, id: string, props: ApiGatewayStackProps) {
         super(scope, id, props)
