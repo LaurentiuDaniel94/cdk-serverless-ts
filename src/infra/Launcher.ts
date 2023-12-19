@@ -8,7 +8,7 @@ const app = new App();
 const dataStack = new DataStack(app, 'DataStack');
 
 const lambdaStack = new LambdaStack(app, 'LambdaStack', {
-    dynamoTable: dataStack.dynamoTable 
+    spacesTable: dataStack.dynamoTable 
 });
 
 new ApiGatewayStack(app, 'ApiGatewayStack', {

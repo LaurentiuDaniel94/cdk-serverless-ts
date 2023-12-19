@@ -9,7 +9,7 @@ import { Effect } from 'aws-cdk-lib/aws-iam';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 interface LambdaStackProps extends StackProps {
-  dynamoTable: ITable
+  spacesTable: ITable
 }
 
 export class LambdaStack extends Stack {
@@ -24,9 +24,17 @@ export class LambdaStack extends Stack {
         handler: 'handler',
         entry: (join(__dirname, '..', '..', 'services', 'spaces', 'handler.ts')),
         environment: {
-          TABLE_NAME: props.dynamoTable.tableName
+          TABLE_NAME: props.spacesTable.tableName
         }
       });
+
+      spacesLambda.addToRolePolicy(new PolicyStatement({
+        effect: Effect.ALLOW,
+        resources: [props.spacesTable.tableArn],
+        actions: ['dynamodb:PutItem']
+      }))
+
+      props.spacesTable.grantReadWriteData(spacesLambda)
 
 
 
