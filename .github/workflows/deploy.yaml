@@ -1,4 +1,5 @@
 name: CDK Deploy
+run-name: pipeline run by @${{github.actor}}
 
 on:
   push:
