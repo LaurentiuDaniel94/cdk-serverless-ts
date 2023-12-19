@@ -12,5 +12,5 @@ const lambdaStack = new LambdaStack(app, 'LambdaStack', {
 });
 
 new ApiGatewayStack(app, 'ApiGatewayStack', {
-    helloLambdaIntegration: lambdaStack.helloLambdaIntegration,
+    spacesLambdaIntegration: lambdaStack.spacesLambdaIntegration,
 });

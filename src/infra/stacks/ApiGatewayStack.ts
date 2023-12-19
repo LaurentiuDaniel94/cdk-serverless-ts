@@ -2,7 +2,7 @@ import {Stack, StackProps} from 'aws-cdk-lib';
 import { LambdaIntegration, RestApi } from 'aws-cdk-lib/aws-apigateway';
 import {Construct} from 'constructs'
 interface ApiGatewayStackProps extends StackProps {
-    helloLambdaIntegration: LambdaIntegration
+    spacesLambdaIntegration: LambdaIntegration
 }
 
 export class ApiGatewayStack extends Stack {
@@ -13,6 +13,7 @@ export class ApiGatewayStack extends Stack {
 
         const api = new RestApi(this, 'ApiGateway');
         const apiGw = api.root.addResource('api-gw');
-        apiGw.addMethod('GET',props.helloLambdaIntegration);
+        apiGw.addMethod('GET',props.spacesLambdaIntegration);
+        apiGw.addMethod('POST',props.spacesLambdaIntegration);
     }
 }
