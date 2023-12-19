@@ -25,6 +25,7 @@ async function handler(event, ApiGatewayProxyEvent, context: Context): Promise<A
                 break;
         }
     } catch (error) {
+        console.error(error);
         return {
             statusCode: 500,
             body: JSON.stringify(error.message)
